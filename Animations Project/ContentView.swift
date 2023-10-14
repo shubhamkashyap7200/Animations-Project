@@ -23,7 +23,7 @@ struct ContentView: View {
                     .background(enabled ? .blue : .red)
                     .offset(dragAmount)
                     .animation(
-                        .default.delay(Double(num) / 20)
+                        .default.delay(Double(num) / 15)
                         , value: dragAmount
                     )
             }
