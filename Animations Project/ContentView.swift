@@ -9,11 +9,45 @@ import SwiftUI
 
 struct ContentView: View {
     // MARK: Properties
+    @State private var isShowingRec = false
+    
+    // MARK: Body
+    var body: some View {
+        VStack {
+            Button("Tap me") {
+                withAnimation {
+                    isShowingRec.toggle()
+                }
+            }
+            
+            if isShowingRec {
+                Rectangle()
+                    .fill(.orange)
+                    .frame(width: 200, height: 200)
+                    .transition(.asymmetric(insertion: .scale, removal: .opacity))
+            }
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+}
+
+
+
+
+
+
+
+
+
+
+struct SnakeLetterEffect: View {
     let letters = Array("Hello Swift")
     @State private var dragAmount = CGSize.zero
     @State private var enabled = false
-    
-    // MARK: Body
+
     var body: some View {
         HStack(spacing: 0) {
             ForEach(0..<letters.count, id: \.self) { num in
@@ -36,16 +70,9 @@ struct ContentView: View {
                     enabled.toggle()
                 }
         )
+
     }
 }
-
-#Preview {
-    ContentView()
-}
-
-
-
-
 
 struct PulsatingButton: View {
     @State private var animationAmount = 1.0
